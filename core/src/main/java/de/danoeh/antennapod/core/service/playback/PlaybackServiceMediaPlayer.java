@@ -1057,6 +1057,9 @@ public class PlaybackServiceMediaPlayer {
         @Override
         public void onPlay() {
             if (playerStatus == PlayerStatus.PAUSED || playerStatus == PlayerStatus.PREPARED) {
+                if (playerStatus == PlayerStatus.PAUSED) {
+                    seekDelta(-UserPreferences.getPauseRewMs());
+                }
                 resume();
             } else if (playerStatus == PlayerStatus.INITIALIZED) {
                 setStartWhenPrepared(true);

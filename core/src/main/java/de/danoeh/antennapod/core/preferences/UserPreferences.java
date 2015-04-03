@@ -58,6 +58,7 @@ public class UserPreferences implements
     private static final String PREF_PLAYBACK_SPEED_ARRAY = "prefPlaybackSpeedArray";
     public static final String PREF_PAUSE_PLAYBACK_FOR_FOCUS_LOSS = "prefPauseForFocusLoss";
     private static final String PREF_SEEK_DELTA_SECS = "prefSeekDeltaSecs";
+    private static final String PREF_PAUSE_REW_SECS = "prefPauseRew";
     private static final String PREF_EXPANDED_NOTIFICATION = "prefExpandNotify";
     private static final String PREF_PERSISTENT_NOTIFICATION = "prefPersistNotify";
 
@@ -90,6 +91,7 @@ public class UserPreferences implements
     private String[] playbackSpeedArray;
     private boolean pauseForFocusLoss;
     private int seekDeltaSecs;
+    private int prefPauseRew;
     private boolean isFreshInstall;
     private int notifyPriority;
     private boolean persistNotify;
@@ -152,6 +154,7 @@ public class UserPreferences implements
                 PREF_PLAYBACK_SPEED_ARRAY, null));
         pauseForFocusLoss = sp.getBoolean(PREF_PAUSE_PLAYBACK_FOR_FOCUS_LOSS, false);
         seekDeltaSecs = Integer.valueOf(sp.getString(PREF_SEEK_DELTA_SECS, "30"));
+        prefPauseRew = Integer.valueOf(sp.getString(PREF_PAUSE_REW_SECS, "0"));
         if (sp.getBoolean(PREF_EXPANDED_NOTIFICATION, false)) {
           notifyPriority = NotificationCompat.PRIORITY_MAX;
         }
@@ -332,6 +335,11 @@ public class UserPreferences implements
         return 1000 * instance.seekDeltaSecs;
     }
 
+    public static int getPauseRewMs() {
+        instanceAvailable();
+        return 1000 * instance.prefPauseRew;
+    }
+
     /**
      * Returns the capacity of the episode cache. This method will return the
      * negative integer EPISODE_CACHE_SIZE_UNLIMITED if the cache size is set to
@@ -430,6 +438,8 @@ public class UserPreferences implements
             }
         } else if (key.equals(PREF_PERSISTENT_NOTIFICATION)) {
             persistNotify = sp.getBoolean(PREF_PERSISTENT_NOTIFICATION, false);
+        } else if (key.equals(PREF_PAUSE_REW_SECS)) {
+            prefPauseRew = Integer.valueOf(sp.getString(PREF_PAUSE_REW_SECS, "0"));
         }
     }
 

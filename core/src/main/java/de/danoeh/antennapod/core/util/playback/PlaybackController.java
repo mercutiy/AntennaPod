@@ -586,6 +586,9 @@ public abstract class PlaybackController {
                             break;
                         case PAUSED:
                         case PREPARED:
+                            if (status == PlayerStatus.PAUSED) {
+                                playbackService.seekDelta(-UserPreferences.getPauseRewMs());
+                            }
                             playbackService.resume();
                             break;
                         case PREPARING:

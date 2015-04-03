@@ -68,6 +68,14 @@
             android:summary="@string/pref_seek_delta_sum"
             android:title="@string/pref_seek_delta_title" />
 
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/pause_rew_values"
+            android:entryValues="@array/pause_rew_values"
+            android:key="prefPauseRew"
+            android:summary="@string/pref_pause_rew_sum"
+            android:title="@string/pref_pause_rew_title" />
+
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/network_pref">
         <ListPreference

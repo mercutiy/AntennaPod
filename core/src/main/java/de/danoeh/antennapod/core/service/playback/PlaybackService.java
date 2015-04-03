@@ -313,6 +313,9 @@ public class PlaybackService extends Service {
                 break;
             case KeyEvent.KEYCODE_MEDIA_PLAY:
                 if (status == PlayerStatus.PAUSED || status == PlayerStatus.PREPARED) {
+                    if (status == PlayerStatus.PAUSED) {
+                        seekDelta(-UserPreferences.getPauseRewMs());
+                    }
                     mediaPlayer.resume();
                 } else if (status == PlayerStatus.INITIALIZED) {
                     mediaPlayer.setStartWhenPrepared(true);

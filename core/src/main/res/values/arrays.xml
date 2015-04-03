@@ -11,6 +11,14 @@
         <item>60</item>
     </string-array>
 
+    <string-array name="pause_rew_values">
+        <item>0</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+    </string-array>
+
     <string-array name="update_intervall_options">
         <item>Manual</item>
         <item>1 hour</item>
